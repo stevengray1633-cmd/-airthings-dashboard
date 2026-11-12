@@ -6,230 +6,207 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
 <title>DELUXE | Airthings Dashboard</title>
-
 <style>
-* {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
   margin: 0;
-  padding: 25px;
+  padding: 24px;
   background: #101827;
-  color: #ffffff;
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
-
-h1 {
-  font-size: 42px;
-  margin: 0;
-  letter-spacing: 2px;
-  font-weight: bold;
-}
-
-.subtitle {
-  color: #aabed8;
-  font-size: 19px;
-  margin: 8px 0 35px;
-}
-
+header { margin-bottom: 30px; }
+h1 { font-size: 42px; margin: 0; letter-spacing: 2px; }
+.subtitle { color: #a9c8f7; margin-top: 6px; }
 .device {
-  background: #202d40;
-  border-radius: 18px;
-  padding: 25px 20px;
+  display: grid;
+  grid-template-columns: 250px repeat(6, minmax(0, 1fr));
+  background: #202e43;
+  border-radius: 17px;
+  padding: 22px 15px;
   margin-bottom: 20px;
-  display: grid;
-  grid-template-columns: 250px 1fr;
   align-items: center;
-  gap: 15px;
+  gap: 0;
 }
-
-.device-info {
-  padding-left: 5px;
-}
-
-.name {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.type {
-  color: #aabed8;
-  margin-top: 8px;
-  font-size: 15px;
-}
-
-.readings {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 5px;
-}
-
+.device-info { padding: 10px; }
+.device-name { font-size: 21px; font-weight: bold; }
+.device-type { color: #a9c8f7; margin-top: 7px; }
 .metric {
   text-align: center;
-  border-left: 1px solid #46546a;
+  border-left: 1px solid #40516a;
   padding: 12px 5px;
   min-width: 0;
 }
-
-.label {
-  color: #a9c9ee;
-  font-size: 16px;
-  white-space: nowrap;
-}
-
-.value {
-  font-size: 36px;
+.metric-label { color: #a9c8f7; font-size: 15px; }
+.metric-value {
+  font-size: 29px;
   font-weight: bold;
-  margin: 14px 0 7px;
+  margin: 15px 0 8px;
 }
-
-.unit {
-  color: #c6d4e7;
-  font-size: 14px;
-}
-
-.status {
-  color: #aabed8;
-  margin-top: 30px;
-  font-size: 14px;
-}
-
-@media (max-width: 1050px) {
-  .device {
-    grid-template-columns: 1fr;
-  }
-
-  .readings {
-    grid-template-columns: repeat(3, 1fr);
+.metric-unit { font-size: 13px; color: #c6d7ef; }
+.good { color: #56df9b; }
+.moderate { color: #ffd166; }
+.high { color: #ff7777; }
+footer { color: #a9c8f7; margin-top: 25px; font-size: 14px; }
+#status { margin-top: 8px; }
+@media(max-width: 1050px) {
+  .device { grid-template-columns: repeat(3, 1fr); }
+  .device-info { grid-column: 1 / -1; }
+  .metric:nth-child(2), .metric:nth-child(5) {
+    border-left: none;
   }
 }
-
-@media (max-width: 550px) {
-  body {
-    padding: 15px;
-  }
-
-  h1 {
-    font-size: 32px;
-  }
-
-  .readings {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .value {
-    font-size: 30px;
-  }
+@media(max-width: 550px) {
+  body { padding: 12px; }
+  .device { grid-template-columns: repeat(2, 1fr); }
+  .metric:nth-child(5) { border-left: 1px solid #40516a; }
+  .metric:nth-child(even) { border-left: none; }
+  .metric-value { font-size: 24px; }
 }
 </style>
 </head>
-
 <body>
-
 <header>
   <h1>DELUXE</h1>
-  <div class="subtitle">
-    Airthings Air Quality Dashboard
-  </div>
+  <div class="subtitle">Airthings Air Quality Dashboard</div>
 </header>
 
-<main id="devices"></main>
+<main id="dashboard"></main>
 
-<footer class="status" id="status">
-  Awaiting Airthings API connection
+<footer>
+  <div id="updated">Waiting for sensor data...</div>
+  <div id="status">Connecting to Airthings data...</div>
 </footer>
 
 <script>
 const devices = [
-  {
-    id: "2930125849",
-    name: "Airthings 1 DFX",
-    type: "Wave Plus",
-    metrics: [
-      ["CO₂", "co2", "ppm"],
-      ["VOCs", "voc", "ppb"],
-      ["Temperature", "temperature", "°C"],
-      ["Humidity", "humidity", "%"],
-      ["Radon", "radon", "Bq/m³"],
-      ["Pressure", "pressure", "mbar"]
-    ]
-  },
-  {
-    id: "2960180535",
-    name: "DH MFRs",
-    type: "View Plus",
-    metrics: [
-      ["CO₂", "co2", "ppm"],
-      ["VOCs", "voc", "ppb"],
-      ["Temperature", "temperature", "°C"],
-      ["Humidity", "humidity", "%"],
-      ["Radon", "radon", "Bq/m³"],
-      ["PM2.5", "pm25", "µg/m³"]
-    ]
-  },
-  {
-    id: "2960194763",
-    name: "View Plus DFX",
-    type: "View Plus",
-    metrics: [
-      ["CO₂", "co2", "ppm"],
-      ["VOCs", "voc", "ppb"],
-      ["Temperature", "temperature", "°C"],
-      ["Humidity", "humidity", "%"],
-      ["Radon", "radon", "Bq/m³"],
-      ["PM2.5", "pm25", "µg/m³"]
-    ]
-  }
+  { id: "2930125849", name: "Airthings 1 DFX", type: "Wave Plus" },
+  { id: "2960180535", name: "DH MFRs", type: "View Plus" },
+  { id: "2960194763", name: "View Plus DFX", type: "View Plus" }
 ];
 
-const container = document.getElementById("devices");
+const metrics = [
+  { label: "CO₂", key: "co2", unit: "ppm", digits: 0 },
+  { label: "VOCs", key: "voc", unit: "ppb", digits: 0 },
+  { label: "Temperature", key: "temp", unit: "°C", digits: 1 },
+  { label: "Humidity", key: "humidity", unit: "%", digits: 0 },
+  { label: "Radon", key: "radonShortTermAvg", unit: "Bq/m³", digits: 0 },
+  { label: "Pressure", key: "pressure", unit: "mbar", digits: 0 }
+];
 
-devices.forEach(device => {
-  const section = document.createElement("section");
-  section.className = "device";
+function colour(key, value) {
+  if (value === null || value === undefined) return "";
+  if (key === "co2") {
+    return value < 800 ? "good" : value < 1200 ? "moderate" : "high";
+  }
+  if (key === "humidity") {
+    return value >= 30 && value <= 60 ? "good" : "moderate";
+  }
+  return "";
+}
 
-  const info = document.createElement("div");
-  info.className = "device-info";
+function displayValue(value, digits) {
+  if (typeof value !== "number" || !Number.isFinite(value)) return "--";
+  return value.toFixed(digits);
+}
 
-  const name = document.createElement("div");
-  name.className = "name";
-  name.textContent = device.name;
+function render(data) {
+  const container = document.getElementById("dashboard");
+  container.innerHTML = "";
 
-  const type = document.createElement("div");
-  type.className = "type";
-  type.textContent = device.type;
+  for (const device of devices) {
+    const record = data.devices?.[device.id];
+    const readings = record?.readings?.data || {};
 
-  info.append(name, type);
+    const section = document.createElement("section");
+    section.className = "device";
 
-  const readings = document.createElement("div");
-  readings.className = "readings";
+    const info = document.createElement("div");
+    info.className = "device-info";
 
-  device.metrics.forEach(([label, key, unit]) => {
-    const metric = document.createElement("div");
-    metric.className = "metric";
+    const name = document.createElement("div");
+    name.className = "device-name";
+    name.textContent = device.name;
 
-    const labelEl = document.createElement("div");
-    labelEl.className = "label";
-    labelEl.textContent = label;
+    const type = document.createElement("div");
+    type.className = "device-type";
+    type.textContent = device.type;
 
-    const valueEl = document.createElement("div");
-    valueEl.className = "value";
-    valueEl.id = "d" + device.id + "-" + key;
-    valueEl.textContent = "--";
+    info.append(name, type);
+    section.appendChild(info);
 
-    const unitEl = document.createElement("div");
-    unitEl.className = "unit";
-    unitEl.textContent = unit;
+    const availableMetrics = [...metrics];
 
-    metric.append(labelEl, valueEl, unitEl);
-    readings.appendChild(metric);
-  });
+    // View Plus devices can display particulate matter.
+    // PM2.5 replaces pressure to retain six columns.
+    if (device.type === "View Plus") {
+      availableMetrics[5] = {
+        label: "PM2.5",
+        key: "pm25",
+        unit: "µg/m³",
+        digits: 1
+      };
+    }
 
-  section.append(info, readings);
-  container.appendChild(section);
-});
+    for (const metric of availableMetrics) {
+      const tile = document.createElement("div");
+      tile.className = "metric";
+
+      const label = document.createElement("div");
+      label.className = "metric-label";
+      label.textContent = metric.label;
+
+      const value = document.createElement("div");
+      value.className = "metric-value";
+      value.textContent = displayValue(readings[metric.key], metric.digits);
+      value.classList.add(colour(metric.key, readings[metric.key]) || "neutral");
+
+      const unit = document.createElement("div");
+      unit.className = "metric-unit";
+      unit.textContent = metric.unit;
+
+      tile.append(label, value, unit);
+      section.appendChild(tile);
+    }
+
+    container.appendChild(section);
+  }
+}
+
+async function loadData() {
+  const status = document.getElementById("status");
+
+  try {
+    const response = await fetch(
+      "./airthings-data.json?t=" + Date.now(),
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
+
+    const data = await response.json();
+    render(data);
+
+    const updated = data.updated
+      ? new Date(data.updated).toLocaleString("en-GB", {
+          dateStyle: "medium",
+          timeStyle: "medium"
+        })
+      : "Unknown";
+
+    document.getElementById("updated").textContent =
+      "Last sensor update: " + updated;
+
+    status.textContent = "Airthings data connected";
+  } catch (error) {
+    status.textContent = "Unable to load Airthings data: " + error.message;
+  }
+}
+
+loadData();
+setInterval(loadData, 60000);
 </script>
-
 </body>
 </html>
