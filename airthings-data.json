@@ -1,20 +1,20 @@
 {
-  "updated": "2026-11-12T17:34:58.600592+00:00",
+  "updated": "2026-11-12T18:30:18.569347+00:00",
   "devices": {
     "2930125849": {
       "name": "Airthings 1 DFX",
       "readings": {
         "data": {
-          "time": 1794504541,
+          "time": 1794507841,
           "battery": 94,
-          "co2": 588.0,
+          "co2": 524.0,
           "humidity": 30.0,
           "pressure": 1006.0,
-          "radonShortTermAvg": 8.0,
+          "radonShortTermAvg": 10.0,
           "relayDeviceType": "hub",
-          "rssi": -46,
-          "temp": 23.1,
-          "voc": 69.0
+          "rssi": -49,
+          "temp": 23.0,
+          "voc": 72.0
         }
       }
     },
@@ -22,18 +22,18 @@
       "name": "DH MFRs",
       "readings": {
         "data": {
-          "time": 1794504759,
+          "time": 1794508057,
           "battery": 100,
-          "co2": 673.0,
-          "humidity": 27.0,
-          "pm1": 1.0,
-          "pm25": 1.0,
-          "pressure": 1008.0,
-          "radonShortTermAvg": 16.0,
+          "co2": 656.0,
+          "humidity": 28.0,
+          "pm1": 0.0,
+          "pm25": 0.0,
+          "pressure": 1009.0,
+          "radonShortTermAvg": 13.0,
           "relayDeviceType": "hub",
           "rssi": 0,
-          "temp": 22.4,
-          "voc": 117.0
+          "temp": 22.1,
+          "voc": 100.0
         }
       }
     },
@@ -41,18 +41,18 @@
       "name": "View Plus DFX",
       "readings": {
         "data": {
-          "time": 1794504686,
+          "time": 1794507984,
           "battery": 100,
-          "co2": 549.0,
-          "humidity": 27.0,
-          "pm1": 0.0,
-          "pm25": 0.0,
+          "co2": 496.0,
+          "humidity": 26.0,
+          "pm1": 1.0,
+          "pm25": 1.0,
           "pressure": 1007.0,
-          "radonShortTermAvg": 11.0,
+          "radonShortTermAvg": 10.0,
           "relayDeviceType": "hub",
           "rssi": 0,
           "temp": 23.1,
-          "voc": 228.0
+          "voc": 231.0
         }
       }
     }
