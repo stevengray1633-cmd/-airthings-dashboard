@@ -1,1 +1,16 @@
 
+name: Update Airthings Dashboard
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check workflow setup
+        run: echo "Airthings workflow is ready"
+
