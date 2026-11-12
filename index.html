@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deluxe House | Airthings Dashboard</title>
+<style>
+body {
+  margin: 0;
+  background: #101827;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 25px;
+}
+h1 { margin-bottom: 5px; }
+.subtitle { color: #aab6c8; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+  margin-top: 35px;
+}
+.card {
+  background: #202d40;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+}
+.value {
+  font-size: 42px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+.label { color: #b8c5d8; }
+footer {
+  margin-top: 35px;
+  color: #aab6c8;
+}
+</style>
+</head>
+<body>
+<h1>DELUXE HOUSE</h1>
+<div class="subtitle">Airthings Air Quality Dashboard</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="label">CO₂</div>
+    <div class="value" id="co2">--</div>
+    <div>ppm</div>
+  </div>
+  <div class="card">
+    <div class="label">Temperature</div>
+    <div class="value" id="temperature">--</div>
+    <div>°C</div>
+  </div>
+  <div class="card">
+    <div class="label">Humidity</div>
+    <div class="value" id="humidity">--</div>
+    <div>%</div>
+  </div>
+  <div class="card">
+    <div class="label">VOCs</div>
+    <div class="value" id="voc">--</div>
+    <div>ppb</div>
+  </div>
+  <div class="card">
+    <div class="label">Radon</div>
+    <div class="value" id="radon">--</div>
+    <div>Bq/m³</div>
+  </div>
+</div>
+
+<footer id="status">
+  Awaiting Airthings API connection
+</footer>
+</body>
+</html>
