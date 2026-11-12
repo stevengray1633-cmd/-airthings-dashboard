@@ -5,10 +5,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="refresh" content="300">
-<title>DELUXE | Airthings Air Quality Dashboard</title>
+
+<title>DELUXE | Airthings Dashboard</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
@@ -18,11 +21,14 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* HEADER */
+
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 115px;
+    gap: 20px;
+    min-height: 176px;
     margin-bottom: 20px;
 }
 
@@ -41,12 +47,17 @@ header {
     margin-top: 7px;
 }
 
+/* LOGO - INCREASED BY 30% */
+
 .logo {
-    width: 135px;
-    height: 135px;
+    width: 176px;
+    height: 176px;
     object-fit: contain;
     mix-blend-mode: lighten;
+    flex-shrink: 0;
 }
+
+/* BUILDING HEADINGS */
 
 .building-title {
     color: #ffffff;
@@ -54,6 +65,8 @@ header {
     font-weight: 800;
     margin: 32px 0 18px;
 }
+
+/* DEVICE PANELS */
 
 .device {
     display: grid;
@@ -113,9 +126,19 @@ header {
     margin-top: 7px;
 }
 
-.good { color: #32dba0; }
-.moderate { color: #ffc83d; }
-.high { color: #ff7777; }
+.good {
+    color: #32dba0;
+}
+
+.moderate {
+    color: #ffc83d;
+}
+
+.high {
+    color: #ff7777;
+}
+
+/* FOOTER */
 
 footer {
     color: #9ac8ff;
@@ -123,6 +146,8 @@ footer {
     margin-top: 28px;
     line-height: 1.8;
 }
+
+/* TABLET SCREENS */
 
 @media (max-width: 1100px) {
     .device {
@@ -140,11 +165,29 @@ footer {
     }
 }
 
+/* MOBILE SCREENS */
+
 @media (max-width: 600px) {
-    .brand h1 { font-size: 38px; }
-    .building-title { font-size: 25px; }
-    .logo { width: 95px; height: 95px; }
-    .device { grid-template-columns: repeat(2, 1fr); }
+    .brand h1 {
+        font-size: 38px;
+    }
+
+    .building-title {
+        font-size: 25px;
+    }
+
+    .logo {
+        width: 124px;
+        height: 124px;
+    }
+
+    header {
+        min-height: 124px;
+    }
+
+    .device {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 </style>
 </head>
@@ -167,23 +210,34 @@ footer {
 </header>
 
 <main id="dashboard">
-    <div id="building-theobalds">
-        <h2 class="building-title">98 Theobalds Road</h2>
-        <div id="theobalds-devices"></div>
-    </div>
 
-    <div id="building-perivale">
-        <h2 class="building-title">Deluxe House Perivale</h2>
+    <section id="building-theobalds">
+        <h2 class="building-title">
+            98 Theobalds Road
+        </h2>
+        <div id="theobalds-devices"></div>
+    </section>
+
+    <section id="building-perivale">
+        <h2 class="building-title">
+            Deluxe House Perivale
+        </h2>
         <div id="perivale-devices"></div>
-    </div>
+    </section>
+
 </main>
 
 <footer>
-    <div id="last-update">Loading sensor readings...</div>
-    <div id="connection-status">Connecting to Airthings data...</div>
+    <div id="last-update">
+        Loading sensor readings...
+    </div>
+    <div id="connection-status">
+        Connecting to Airthings data...
+    </div>
 </footer>
 
 <script>
+
 const DATA_URL = "airthings-data.json";
 
 const deviceGroups = {
@@ -207,13 +261,30 @@ function escapeHTML(value) {
 }
 
 function number(value, decimals = 0) {
+    if (value === null ||
+        value === undefined ||
+        value === "") {
+        return "--";
+    }
+
     const n = Number(value);
-    return Number.isFinite(n) ? n.toFixed(decimals) : "--";
+
+    return Number.isFinite(n)
+        ? n.toFixed(decimals)
+        : "--";
 }
 
 function colour(metric, value) {
+    if (value === null ||
+        value === undefined) {
+        return "";
+    }
+
     const n = Number(value);
-    if (!Number.isFinite(n)) return "";
+
+    if (!Number.isFinite(n)) {
+        return "";
+    }
 
     if (metric === "co2") {
         if (n < 800) return "good";
@@ -245,8 +316,9 @@ function renderDevice(device) {
     const name = device.name || "Unknown device";
     const readings = device.readings?.data || {};
 
-    const isViewPlus = name.toLowerCase().includes("view plus") ||
-                       name.toLowerCase().includes("dh mfr");
+    const isViewPlus =
+        name.toLowerCase().includes("view plus") ||
+        name.toLowerCase().includes("dh mfr");
 
     const co2 = readings.co2;
     const voc = readings.voc;
@@ -271,7 +343,9 @@ function renderDevice(device) {
     return `
         <div class="device">
             <div class="device-info">
-                <div class="device-name">${escapeHTML(name)}</div>
+                <div class="device-name">
+                    ${escapeHTML(name)}
+                </div>
                 <div class="device-type">
                     ${isViewPlus ? "View Plus" : "Wave Plus"}
                 </div>
@@ -321,14 +395,18 @@ function renderDevice(device) {
 
 function findDevice(devices, name) {
     return devices.find(device =>
-        device.name?.trim().toLowerCase() === name.toLowerCase()
+        device.name?.trim().toLowerCase() ===
+        name.toLowerCase()
     );
 }
 
 function renderGroup(devices, names) {
     return names.map(name => {
         const device = findDevice(devices, name);
-        return device ? renderDevice(device) : "";
+
+        return device
+            ? renderDevice(device)
+            : "";
     }).join("");
 }
 
@@ -345,37 +423,59 @@ async function updateDashboard() {
 
         const data = await response.json();
 
-        const devices = Object.values(data.devices || {});
+        const devices = Object.values(
+            data.devices || {}
+        );
 
-        document.getElementById("theobalds-devices").innerHTML =
-            renderGroup(devices, deviceGroups.theobalds);
+        document.getElementById(
+            "theobalds-devices"
+        ).innerHTML = renderGroup(
+            devices,
+            deviceGroups.theobalds
+        );
 
-        document.getElementById("perivale-devices").innerHTML =
-            renderGroup(devices, deviceGroups.perivale);
+        document.getElementById(
+            "perivale-devices"
+        ).innerHTML = renderGroup(
+            devices,
+            deviceGroups.perivale
+        );
 
         const updated = data.updated
             ? new Date(data.updated)
             : null;
 
-        document.getElementById("last-update").textContent =
+        document.getElementById(
+            "last-update"
+        ).textContent =
             "Last sensor update: " +
-            (updated && !isNaN(updated)
+            (updated && !Number.isNaN(updated.getTime())
                 ? updated.toLocaleString("en-GB")
                 : "Unknown");
 
-        document.getElementById("connection-status").textContent =
+        document.getElementById(
+            "connection-status"
+        ).textContent =
             "Airthings data connected - " +
-            devices.length + " devices";
+            devices.length +
+            " devices";
 
     } catch (error) {
-        document.getElementById("connection-status").textContent =
+        document.getElementById(
+            "connection-status"
+        ).textContent =
             "Unable to connect to Airthings data";
+
         console.error(error);
     }
 }
 
+// Initial data load
 updateDashboard();
+
+// Refresh readings every 60 seconds
 setInterval(updateDashboard, 60000);
+
 </script>
 
 </body>
