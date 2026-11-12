@@ -8,21 +8,17 @@
 <title>DELUXE | Airthings Dashboard</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   padding: 24px;
   background: #101827;
-  color: white;
+  color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-header {
-  margin-bottom: 30px;
-}
+header { margin-bottom: 30px; }
 
 h1 {
   font-size: 42px;
@@ -45,12 +41,9 @@ h1 {
   padding: 22px 15px;
   margin-bottom: 20px;
   align-items: center;
-  gap: 0;
 }
 
-.device-info {
-  padding: 10px;
-}
+.device-info { padding: 10px; }
 
 .device-name {
   font-size: 21px;
@@ -72,6 +65,22 @@ h1 {
 .metric-label {
   color: #a9c8f7;
   font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.metric-icon {
+  width: 23px;
+  height: 23px;
+  stroke: #91b2d0;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
 }
 
 .metric-value {
@@ -85,17 +94,9 @@ h1 {
   color: #c6d7ef;
 }
 
-.good {
-  color: #56df9b;
-}
-
-.moderate {
-  color: #ffd166;
-}
-
-.high {
-  color: #ff7777;
-}
+.good { color: #56df9b; }
+.moderate { color: #ffd166; }
+.high { color: #ff7777; }
 
 footer {
   color: #a9c8f7;
@@ -103,45 +104,27 @@ footer {
   font-size: 14px;
 }
 
-#status {
-  margin-top: 8px;
-}
+#status { margin-top: 8px; }
 
 @media (max-width: 1050px) {
   .device {
     grid-template-columns: repeat(3, 1fr);
   }
-
-  .device-info {
-    grid-column: 1 / -1;
-  }
-
+  .device-info { grid-column: 1 / -1; }
   .metric:nth-child(2),
-  .metric:nth-child(5) {
-    border-left: none;
-  }
+  .metric:nth-child(5) { border-left: none; }
 }
 
 @media (max-width: 550px) {
-  body {
-    padding: 12px;
-  }
-
-  .device {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+  body { padding: 12px; }
+  .device { grid-template-columns: repeat(2, 1fr); }
   .metric:nth-child(5) {
     border-left: 1px solid #40516a;
   }
-
-  .metric:nth-child(even) {
-    border-left: none;
-  }
-
-  .metric-value {
-    font-size: 24px;
-  }
+  .metric:nth-child(even) { border-left: none; }
+  .metric-value { font-size: 24px; }
+  .metric-label { font-size: 12px; gap: 4px; }
+  .metric-icon { width: 19px; height: 19px; }
 }
 </style>
 </head>
@@ -158,15 +141,63 @@ footer {
 <main id="dashboard"></main>
 
 <footer>
-  <div id="updated">
-    Waiting for sensor data...
-  </div>
-  <div id="status">
-    Connecting to Airthings data...
-  </div>
+  <div id="updated">Waiting for sensor data...</div>
+  <div id="status">Connecting to Airthings data...</div>
 </footer>
 
 <script>
+
+// Self-contained SVG icons.
+// No external icon libraries are required.
+
+const icons = {
+  co2: `<path d="M7 18h11a4 4 0 0 0 .2-8
+    6 6 0 0 0-11.5-1.5A4.8 4.8 0 0 0 7 18Z"/>`,
+
+  voc: `<path d="M3 8h12a3 3 0 1 0-3-3"/>
+        <path d="M2 12h18a3 3 0 1 1-3 3"/>
+        <path d="M4 16h7a3 3 0 1 1-3 3"/>`,
+
+  temp: `<path d="M14 14.8V5a3 3 0 0 0-6 0v9.8
+    a5 5 0 1 0 6 0Z"/>
+    <path d="M11 9v9"/>
+    <circle cx="11" cy="18" r="1"/>`,
+
+  humidity: `<path d="M12 2C9 6 5 10.5 5 15
+    a7 7 0 0 0 14 0c0-4.5-4-9-7-13Z"/>
+    <path d="M9 16a3 3 0 0 0 3 3"/>`,
+
+  radon: `<circle cx="12" cy="12" r="2"/>
+    <path d="M10.8 8.2 8 3H5L2 8l5.5 2"/>
+    <path d="m15.2 8.2 2.8-5.2h3l3 5-5.5 2"
+      transform="translate(-2 0)"/>
+    <path d="m9 15-3 5 3 2h6l-1-6"/>`,
+
+  pressure: `<path d="M4.9 18a9 9 0 1 1 14.2 0"/>
+    <path d="m12 13 5-5"/>
+    <circle cx="12" cy="13" r="1.5"/>
+    <path d="M6 20h12"/>`,
+
+  pm25: `<circle cx="6" cy="6" r="1.5"/>
+    <circle cx="15" cy="5" r="2"/>
+    <circle cx="20" cy="12" r="1.5"/>
+    <circle cx="12" cy="12" r="2"/>
+    <circle cx="5" cy="16" r="2"/>
+    <circle cx="15" cy="20" r="1.5"/>`
+};
+
+function makeIcon(key) {
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("class", "metric-icon");
+  svg.setAttribute("aria-hidden", "true");
+
+  // Icon markup is defined locally, not from API data.
+  svg.innerHTML = icons[key] || "";
+  return svg;
+}
 
 const devices = [
   {
@@ -191,45 +222,48 @@ const metrics = [
     label: "CO₂",
     key: "co2",
     unit: "ppm",
-    digits: 0
+    digits: 0,
+    icon: "co2"
   },
   {
     label: "VOCs",
     key: "voc",
     unit: "ppb",
-    digits: 0
+    digits: 0,
+    icon: "voc"
   },
   {
     label: "Temperature",
     key: "temp",
     unit: "°C",
-    digits: 1
+    digits: 1,
+    icon: "temp"
   },
   {
     label: "Humidity",
     key: "humidity",
     unit: "%",
-    digits: 0
+    digits: 0,
+    icon: "humidity"
   },
   {
     label: "Radon",
     key: "radonShortTermAvg",
     unit: "Bq/m³",
-    digits: 0
+    digits: 0,
+    icon: "radon"
   },
   {
     label: "Pressure",
     key: "pressure",
     unit: "mbar",
-    digits: 0
+    digits: 0,
+    icon: "pressure"
   }
 ];
 
 function colour(key, value) {
-
-  if (value === null || value === undefined) {
-    return "";
-  }
+  if (typeof value !== "number") return "";
 
   if (key === "co2") {
     return value < 800
@@ -249,50 +283,32 @@ function colour(key, value) {
 }
 
 function displayValue(value, digits) {
-
-  if (
-    typeof value !== "number" ||
-    !Number.isFinite(value)
-  ) {
+  if (typeof value !== "number" ||
+      !Number.isFinite(value)) {
     return "--";
   }
-
   return value.toFixed(digits);
 }
 
 function render(data) {
-
-  const container =
-    document.getElementById("dashboard");
-
+  const container = document.getElementById("dashboard");
   container.innerHTML = "";
 
   for (const device of devices) {
-
     const record = data.devices?.[device.id];
+    const readings = record?.readings?.data || {};
 
-    const readings =
-      record?.readings?.data || {};
-
-    const section =
-      document.createElement("section");
-
+    const section = document.createElement("section");
     section.className = "device";
 
-    const info =
-      document.createElement("div");
-
+    const info = document.createElement("div");
     info.className = "device-info";
 
-    const name =
-      document.createElement("div");
-
+    const name = document.createElement("div");
     name.className = "device-name";
     name.textContent = device.name;
 
-    const type =
-      document.createElement("div");
-
+    const type = document.createElement("div");
     type.className = "device-type";
     type.textContent = device.type;
 
@@ -301,35 +317,31 @@ function render(data) {
 
     const availableMetrics = [...metrics];
 
-    // View Plus displays PM2.5 instead of pressure
-
+    // Display PM2.5 instead of pressure on View Plus.
     if (device.type === "View Plus") {
-
       availableMetrics[5] = {
         label: "PM2.5",
         key: "pm25",
         unit: "µg/m³",
-        digits: 1
+        digits: 1,
+        icon: "pm25"
       };
-
     }
 
     for (const metric of availableMetrics) {
-
-      const tile =
-        document.createElement("div");
-
+      const tile = document.createElement("div");
       tile.className = "metric";
 
-      const label =
-        document.createElement("div");
-
+      const label = document.createElement("div");
       label.className = "metric-label";
-      label.textContent = metric.label;
 
-      const value =
-        document.createElement("div");
+      label.appendChild(makeIcon(metric.icon));
 
+      const labelText = document.createElement("span");
+      labelText.textContent = metric.label;
+      label.appendChild(labelText);
+
+      const value = document.createElement("div");
       value.className = "metric-value";
 
       value.textContent = displayValue(
@@ -346,29 +358,22 @@ function render(data) {
         value.classList.add(valueColour);
       }
 
-      const unit =
-        document.createElement("div");
-
+      const unit = document.createElement("div");
       unit.className = "metric-unit";
       unit.textContent = metric.unit;
 
       tile.append(label, value, unit);
       section.appendChild(tile);
-
     }
 
     container.appendChild(section);
-
   }
 }
 
 async function loadData() {
-
-  const status =
-    document.getElementById("status");
+  const status = document.getElementById("status");
 
   try {
-
     const response = await fetch(
       "./airthings-data.json?t=" + Date.now(),
       { cache: "no-store" }
@@ -379,7 +384,6 @@ async function loadData() {
     }
 
     const data = await response.json();
-
     render(data);
 
     const updated = data.updated
@@ -392,30 +396,23 @@ async function loadData() {
         )
       : "Unknown";
 
-    document.getElementById(
-      "updated"
-    ).textContent =
+    document.getElementById("updated").textContent =
       "Last sensor update: " + updated;
 
-    status.textContent =
-      "Airthings data connected";
+    status.textContent = "Airthings data connected";
 
   } catch (error) {
-
     status.textContent =
-      "Unable to load Airthings data: " +
-      error.message;
-
+      "Unable to load Airthings data: " + error.message;
   }
 }
 
-// Load readings immediately
+// Load immediately.
 loadData();
 
-// Check for updated readings every 60 seconds
+// Check for new readings every minute.
 setInterval(loadData, 60000);
 
 </script>
-
 </body>
 </html>
