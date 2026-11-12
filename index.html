@@ -3,398 +3,379 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="refresh" content="300">
-
-<title>DELUXE | Airthings Dashboard</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap" rel="stylesheet">
+<title>DELUXE | Airthings Air Quality Dashboard</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
-  margin: 0;
-  padding: 15px;
-  background: #101827;
-  color: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #101827;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* HEADER */
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 24px;
-  min-height: 155px;
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 115px;
+    margin-bottom: 20px;
 }
 
-.header-title h1 {
-  color: #ff003b;
-  font-family: 'Poppins', Arial, sans-serif;
-  font-size: 47.5px;
-  font-weight: 900;
-  letter-spacing: -2px;
-  line-height: 1.1;
-  margin: 0 0 5px;
+.brand h1 {
+    color: #ff003b;
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin: 0;
+    line-height: 1.1;
 }
 
 .subtitle {
-  color: #9ac8ff;
-  font-size: 15px;
+    color: #9ac8ff;
+    font-size: 16px;
+    margin-top: 7px;
 }
 
-.facilities-logo {
-  width: 147.5px;
-  height: 147.5px;
-  object-fit: contain;
-  mix-blend-mode: screen;
-  flex-shrink: 0;
+.logo {
+    width: 135px;
+    height: 135px;
+    object-fit: contain;
+    mix-blend-mode: lighten;
 }
 
-/* DEVICE PANELS */
+.building-title {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 800;
+    margin: 32px 0 18px;
+}
+
 .device {
-  display: grid;
-  grid-template-columns: 215px repeat(6, minmax(0, 1fr));
-  align-items: center;
-  background: #202e43;
-  border-radius: 17px;
-  padding: 18px 15px;
-  margin-bottom: 15px;
-  min-height: 125px;
+    display: grid;
+    grid-template-columns: 220px repeat(6, minmax(0, 1fr));
+    align-items: center;
+    background: #202e43;
+    border-radius: 17px;
+    padding: 20px 15px;
+    margin-bottom: 14px;
+    min-height: 125px;
 }
 
 .device-info {
-  padding: 10px 16px;
+    padding: 10px;
 }
 
 .device-name {
-  font-size: 19px;
-  font-weight: bold;
-  margin-bottom: 7px;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 7px;
 }
 
 .device-type {
-  font-size: 13px;
-  color: #9ac8ff;
+    font-size: 13px;
+    color: #9ac8ff;
 }
 
 .metric {
-  text-align: center;
-  border-left: 1px solid #40516a;
-  padding: 12px 5px;
-  min-width: 0;
+    text-align: center;
+    border-left: 1px solid #40516a;
+    padding: 10px 5px;
+    min-width: 0;
 }
 
 .metric-label {
-  color: #9ac8ff;
-  font-size: 13px;
-  margin-bottom: 9px;
+    color: #9ac8ff;
+    font-size: 13px;
+    margin-bottom: 8px;
 }
 
-.metric-reading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 24px;
-  font-weight: bold;
+.metric-value {
+    font-size: 25px;
+    font-weight: bold;
+    color: #ffffff;
+    white-space: nowrap;
 }
 
 .metric-icon {
-  color: #8fc5ff;
-  font-size: 22px;
-  line-height: 1;
+    color: #8bc4ff;
+    font-size: 21px;
+    margin-right: 6px;
 }
 
 .metric-unit {
-  font-size: 12px;
-  color: #9ac8ff;
-  margin-top: 7px;
+    color: #9ac8ff;
+    font-size: 12px;
+    margin-top: 7px;
 }
 
-.good {
-  color: #32dba0;
+.good { color: #32dba0; }
+.moderate { color: #ffc83d; }
+.high { color: #ff7777; }
+
+footer {
+    color: #9ac8ff;
+    font-size: 13px;
+    margin-top: 28px;
+    line-height: 1.8;
 }
 
-.moderate {
-  color: #ffc83d;
-}
-
-.high {
-  color: #ff6575;
-}
-
-.normal {
-  color: #ffffff;
-}
-
-/* FOOTER */
-.footer {
-  color: #9ac8ff;
-  font-size: 12px;
-  margin-top: 25px;
-  line-height: 1.8;
-}
-
-.error {
-  padding: 25px;
-  color: #ff6575;
-}
-
-/* SMALLER SCREENS */
 @media (max-width: 1100px) {
-  .device {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-  }
+    .device {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
 
-  .device-info {
-    grid-column: 1 / -1;
-  }
+    .device-info {
+        grid-column: 1 / -1;
+    }
 
-  .metric {
-    border-left: none;
-    border-top: 1px solid #40516a;
-  }
+    .metric {
+        border-left: none;
+        border-top: 1px solid #40516a;
+    }
 }
 
-@media (max-width: 550px) {
-  .device {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .header-title h1 {
-    font-size: 37.5px;
-  }
-
-  .facilities-logo {
-    width: 112.5px;
-    height: 112.5px;
-  }
+@media (max-width: 600px) {
+    .brand h1 { font-size: 38px; }
+    .building-title { font-size: 25px; }
+    .logo { width: 95px; height: 95px; }
+    .device { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
 
 <body>
 
-<header class="dashboard-header">
-  <div class="header-title">
-    <h1>DELUXE</h1>
-    <div class="subtitle">
-      Airthings Air Quality Dashboard
+<header>
+    <div class="brand">
+        <h1>DELUXE</h1>
+        <div class="subtitle">
+            Airthings Air Quality Dashboard
+        </div>
     </div>
-  </div>
 
-  <img
-    src="deluxe-facilities-logo.png"
-    alt="Deluxe Facilities"
-    class="facilities-logo"
-  >
+    <img
+        class="logo"
+        src="deluxe-facilities-logo.png"
+        alt="Deluxe Facilities Logo"
+    >
 </header>
 
-<main id="devices">
-  Loading Airthings sensor readings...
+<main id="dashboard">
+    <div id="building-theobalds">
+        <h2 class="building-title">98 Theobalds Road</h2>
+        <div id="theobalds-devices"></div>
+    </div>
+
+    <div id="building-perivale">
+        <h2 class="building-title">Deluxe House Perivale</h2>
+        <div id="perivale-devices"></div>
+    </div>
 </main>
 
-<footer class="footer">
-  <div id="lastUpdate">Loading update time...</div>
-  <div id="connection">Connecting to Airthings data...</div>
+<footer>
+    <div id="last-update">Loading sensor readings...</div>
+    <div id="connection-status">Connecting to Airthings data...</div>
 </footer>
 
 <script>
-const icons = {
-  co2: "☁",
-  voc: "≋",
-  temp: "♧",
-  humidity: "♧",
-  radon: "☢",
-  pressure: "◉",
-  pm25: "⠿"
+const DATA_URL = "airthings-data.json";
+
+const deviceGroups = {
+    theobalds: [
+        "Airthings 1 DFX",
+        "View Plus DFX"
+    ],
+    perivale: [
+        "DH MFRs"
+    ]
 };
 
-function number(value, decimals = 0) {
-  const n = Number(value);
-  return value != null && Number.isFinite(n)
-    ? n.toFixed(decimals)
-    : "--";
-}
-
-function co2Colour(value) {
-  if (value == null) return "normal";
-  if (value < 800) return "good";
-  if (value < 1200) return "moderate";
-  return "high";
-}
-
-function humidityColour(value) {
-  if (value == null) return "normal";
-  if (value >= 30 && value <= 60) return "good";
-  if (value >= 25 && value <= 65) return "moderate";
-  return "high";
-}
-
-function metric(label, icon, value, unit, colour = "normal") {
-  return `
-    <div class="metric">
-      <div class="metric-label">${label}</div>
-      <div class="metric-reading">
-        <span class="metric-icon">${icon}</span>
-        <span class="${colour}">${value}</span>
-      </div>
-      <div class="metric-unit">${unit}</div>
-    </div>
-  `;
-}
-
-function deviceType(data) {
-  const type = data?.relayDeviceType;
-  return type === "hub" ? "View Plus" : "Wave Plus";
-}
-
 function escapeHTML(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
+    return String(value ?? "").replace(/[&<>"']/g, c => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[c]);
+}
+
+function number(value, decimals = 0) {
+    const n = Number(value);
+    return Number.isFinite(n) ? n.toFixed(decimals) : "--";
+}
+
+function colour(metric, value) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return "";
+
+    if (metric === "co2") {
+        if (n < 800) return "good";
+        if (n < 1200) return "moderate";
+        return "high";
+    }
+
+    if (metric === "humidity") {
+        if (n >= 30 && n <= 60) return "good";
+        return "moderate";
+    }
+
+    return "";
+}
+
+function metric(label, value, unit, icon, colourClass = "") {
+    return `
+        <div class="metric">
+            <div class="metric-label">${label}</div>
+            <div class="metric-value ${colourClass}">
+                <span class="metric-icon">${icon}</span>${value}
+            </div>
+            <div class="metric-unit">${unit}</div>
+        </div>
+    `;
 }
 
 function renderDevice(device) {
-  const data = device.readings?.data || {};
-  const name = device.name || "Airthings Device";
+    const name = device.name || "Unknown device";
+    const readings = device.readings?.data || {};
 
-  const co2 = data.co2;
-  const voc = data.voc;
-  const temp = data.temp;
-  const humidity = data.humidity;
-  const radon = data.radonShortTermAvg;
+    const isViewPlus = name.toLowerCase().includes("view plus") ||
+                       name.toLowerCase().includes("dh mfr");
 
-  const lastMetric = data.pm25 != null
-    ? metric(
-        "PM2.5",
-        icons.pm25,
-        number(data.pm25, 1),
-        "µg/m³"
-      )
-    : metric(
-        "Pressure",
-        icons.pressure,
-        number(data.pressure),
-        "mbar"
-      );
+    const co2 = readings.co2;
+    const voc = readings.voc;
+    const temp = readings.temp;
+    const humidity = readings.humidity;
+    const radon = readings.radonShortTermAvg;
 
-  return `
-    <section class="device">
-      <div class="device-info">
-        <div class="device-name">${escapeHTML(name)}</div>
-        <div class="device-type">${deviceType(data)}</div>
-      </div>
+    const lastMetric = isViewPlus
+        ? metric(
+            "PM2.5",
+            number(readings.pm25, 1),
+            "µg/m³",
+            "⠿"
+          )
+        : metric(
+            "Pressure",
+            number(readings.pressure),
+            "mbar",
+            "◉"
+          );
 
-      ${metric(
-        "CO₂",
-        icons.co2,
-        number(co2),
-        "ppm",
-        co2Colour(co2)
-      )}
+    return `
+        <div class="device">
+            <div class="device-info">
+                <div class="device-name">${escapeHTML(name)}</div>
+                <div class="device-type">
+                    ${isViewPlus ? "View Plus" : "Wave Plus"}
+                </div>
+            </div>
 
-      ${metric(
-        "VOCs",
-        icons.voc,
-        number(voc),
-        "ppb"
-      )}
+            ${metric(
+                "CO₂",
+                number(co2),
+                "ppm",
+                "☁",
+                colour("co2", co2)
+            )}
 
-      ${metric(
-        "Temperature",
-        icons.temp,
-        number(temp, 1),
-        "°C"
-      )}
+            ${metric(
+                "VOCs",
+                number(voc),
+                "ppb",
+                "≋"
+            )}
 
-      ${metric(
-        "Humidity",
-        icons.humidity,
-        number(humidity),
-        "%",
-        humidityColour(humidity)
-      )}
+            ${metric(
+                "Temperature",
+                number(temp, 1),
+                "°C",
+                "♧"
+            )}
 
-      ${metric(
-        "Radon",
-        icons.radon,
-        number(radon),
-        "Bq/m³"
-      )}
+            ${metric(
+                "Humidity",
+                number(humidity),
+                "%",
+                "♧",
+                colour("humidity", humidity)
+            )}
 
-      ${lastMetric}
-    </section>
-  `;
+            ${metric(
+                "Radon",
+                number(radon),
+                "Bq/m³",
+                "☢"
+            )}
+
+            ${lastMetric}
+        </div>
+    `;
 }
 
-async function loadAirthings() {
-  const container = document.getElementById("devices");
-  const connection = document.getElementById("connection");
-  const lastUpdate = document.getElementById("lastUpdate");
-
-  try {
-    const response = await fetch(
-      "airthings-data.json?t=" + Date.now(),
-      { cache: "no-store" }
+function findDevice(devices, name) {
+    return devices.find(device =>
+        device.name?.trim().toLowerCase() === name.toLowerCase()
     );
-
-    if (!response.ok) {
-      throw new Error("Unable to retrieve Airthings data");
-    }
-
-    const result = await response.json();
-    const devices = Object.values(result.devices || {});
-
-    if (devices.length === 0) {
-      throw new Error("No Airthings devices found");
-    }
-
-    container.innerHTML = devices
-      .map(renderDevice)
-      .join("");
-
-    if (result.updated) {
-      const date = new Date(result.updated);
-
-      lastUpdate.textContent =
-        "Last sensor update: " +
-        (Number.isNaN(date.getTime())
-          ? result.updated
-          : date.toLocaleString("en-GB"));
-    } else {
-      lastUpdate.textContent =
-        "Last sensor update: Not available";
-    }
-
-    connection.textContent =
-      "Airthings data connected • " +
-      devices.length +
-      " devices";
-
-  } catch (error) {
-    container.innerHTML =
-      '<div class="error">Unable to load sensor readings.</div>';
-
-    connection.textContent =
-      "Airthings data connection error";
-
-    console.error(error);
-  }
 }
 
-loadAirthings();
-setInterval(loadAirthings, 60000);
+function renderGroup(devices, names) {
+    return names.map(name => {
+        const device = findDevice(devices, name);
+        return device ? renderDevice(device) : "";
+    }).join("");
+}
+
+async function updateDashboard() {
+    try {
+        const response = await fetch(
+            DATA_URL + "?t=" + Date.now(),
+            { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+            throw new Error("Unable to load sensor data");
+        }
+
+        const data = await response.json();
+
+        const devices = Object.values(data.devices || {});
+
+        document.getElementById("theobalds-devices").innerHTML =
+            renderGroup(devices, deviceGroups.theobalds);
+
+        document.getElementById("perivale-devices").innerHTML =
+            renderGroup(devices, deviceGroups.perivale);
+
+        const updated = data.updated
+            ? new Date(data.updated)
+            : null;
+
+        document.getElementById("last-update").textContent =
+            "Last sensor update: " +
+            (updated && !isNaN(updated)
+                ? updated.toLocaleString("en-GB")
+                : "Unknown");
+
+        document.getElementById("connection-status").textContent =
+            "Airthings data connected - " +
+            devices.length + " devices";
+
+    } catch (error) {
+        document.getElementById("connection-status").textContent =
+            "Unable to connect to Airthings data";
+        console.error(error);
+    }
+}
+
+updateDashboard();
+setInterval(updateDashboard, 60000);
 </script>
 
 </body>
