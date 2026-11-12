@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12T14:36:03.844217+00:00",
+  "updated": "2026-11-12T14:36:39.983064+00:00",
   "devices": {
     "2930125849": {
       "name": "Airthings 1 DFX",
@@ -22,10 +22,10 @@
       "name": "DH MFRs",
       "readings": {
         "data": {
-          "time": 1794493960,
+          "time": 1794494104,
           "battery": 100,
-          "co2": 698.0,
-          "humidity": 29.0,
+          "co2": 697.0,
+          "humidity": 28.0,
           "pm1": 0.0,
           "pm25": 0.0,
           "pressure": 1006.0,
