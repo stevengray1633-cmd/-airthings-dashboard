@@ -4,75 +4,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Deluxe House | Airthings Dashboard</title>
+<meta http-equiv="refresh" content="300">
+<title>DELUXE | Airthings Dashboard</title>
 <style>
+* { box-sizing: border-box; }
 body {
   margin: 0;
+  padding: 30px;
   background: #101827;
   color: white;
   font-family: Arial, sans-serif;
-  padding: 25px;
 }
-h1 { margin-bottom: 5px; }
-.subtitle { color: #aab6c8; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 20px;
-  margin-top: 35px;
+h1 {
+  font-size: 42px;
+  margin: 0;
+  letter-spacing: 2px;
 }
-.card {
+.subtitle {
+  color: #aabed8;
+  margin: 8px 0 35px;
+  font-size: 19px;
+}
+.device {
   background: #202d40;
-  border-radius: 15px;
+  border-radius: 18px;
   padding: 25px;
+  margin-bottom: 22px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  align-items: center;
+  gap: 20px;
+}
+.name {
+  font-size: 23px;
+  font-weight: bold;
+}
+.type {
+  color: #aabed8;
+  margin-top: 8px;
+}
+.readings {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.metric {
   text-align: center;
+  border-left: 1px solid #46546a;
+  padding: 10px 5px;
+}
+.label {
+  color: #a9c9ee;
+  font-size: 16px;
 }
 .value {
-  font-size: 42px;
+  font-size: 34px;
   font-weight: bold;
-  margin: 20px 0;
+  margin: 12px 0 5px;
 }
-.label { color: #b8c5d8; }
-footer {
-  margin-top: 35px;
-  color: #aab6c8;
+.unit {
+  color: #c6d4e7;
+  font-size: 14px;
+}
+.status {
+  color: #aabed8;
+  margin-top: 30px;
+}
+@media(max-width: 1000px) {
+  .device { grid-template-columns: 1fr; }
+  .readings {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media(max-width: 500px) {
+  .readings {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>
 </head>
 <body>
-<h1>DELUXE HOUSE</h1>
-<div class="subtitle">Airthings Air Quality Dashboard</div>
 
-<div class="grid">
-  <div class="card">
-    <div class="label">CO₂</div>
-    <div class="value" id="co2">--</div>
-    <div>ppm</div>
-  </div>
-  <div class="card">
-    <div class="label">Temperature</div>
-    <div class="value" id="temperature">--</div>
-    <div>°C</div>
-  </div>
-  <div class="card">
-    <div class="label">Humidity</div>
-    <div class="value" id="humidity">--</div>
-    <div>%</div>
-  </div>
-  <div class="card">
-    <div class="label">VOCs</div>
-    <div class="value" id="voc">--</div>
-    <div>ppb</div>
-  </div>
-  <div class="card">
-    <div class="label">Radon</div>
-    <div class="value" id="radon">--</div>
-    <div>Bq/m³</div>
-  </div>
+<h1>DELUXE</h1>
+<div class="subtitle">
+Airthings Air Quality Dashboard
 </div>
 
-<footer id="status">
-  Awaiting Airthings API connection
-</footer>
+<div id="devices"></div>
+
+<div class="status" id="status">
+Awaiting Airthings API connection
+</div>
+
+<script>
+const devices = [
+  {
+    id: "2930125849",
+    name: "Airthings 1 DFX",
+    type: "Wave Plus",
+    metrics: [
+      ["Radon", "radon", "Bq/m³"],
+      ["VOCs", "voc", "ppb"],
+      ["CO₂", "co2", "ppm"],
+      ["Humidity", "humidity", "%"],
+      ["Temperature", "temperature", "°C"],
+      ["Pressure", "pressure", "mbar"]
+    ]
+  },
+  {
+    id: "2960180535",
+    name: "DH MFRs",
+    type: "View Plus",
+    metrics: [
+      ["Radon", "radon", "Bq/m³"],
+      ["PM2.5", "pm25", "µg/m³"],
+      ["CO₂", "co2", "ppm"],
+      ["Humidity", "humidity", "%"],
+      ["Temperature", "temperature", "°C"],
+      ["VOCs", "voc", "ppb"]
+    ]
+  },
+  {
+    id: "2960194763",
+    name: "View Plus DFX",
+    type: "View Plus",
+    metrics: [
+      ["Radon", "radon", "Bq/m³"],
+      ["PM2.5", "pm25", "µg/m³"],
+      ["CO₂", "co2", "ppm"],
+      ["Humidity", "humidity", "%"],
+      ["Temperature", "temperature", "°C"],
+      ["VOCs", "voc", "ppb"]
+    ]
+  }
+];
+
+const container = document.getElementById("devices");
+
+devices.forEach(device => {
+  const section = document.createElement("section");
+  section.className = "device";
+
+  const info = document.createElement("div");
+  const name = document.createElement("div");
+  name.className = "name";
+  name.textContent = device.name;
+
+  const type = document.createElement("div");
+  type.className = "type";
+  type.textContent = device.type;
+
+  info.append(name, type);
+
+  const readings = document.createElement("div");
+  readings.className = "readings";
+
+  device.metrics.forEach(([label, key, unit]) => {
+    const metric = document.createElement("div");
+    metric.className = "metric";
+
+    const labelEl = document.createElement("div");
+    labelEl.className = "label";
+    labelEl.textContent = label;
+
+    const valueEl = document.createElement("div");
+    valueEl.className = "value";
+    valueEl.id = "d" + device.id + "-" + key;
+    valueEl.textContent = "--";
+
+    const unitEl = document.createElement("div");
+    unitEl.className = "unit";
+    unitEl.textContent = unit;
+
+    metric.append(labelEl, valueEl, unitEl);
+    readings.appendChild(metric);
+  });
+
+  section.append(info, readings);
+  container.appendChild(section);
+});
+</script>
+
 </body>
 </html>
