@@ -5,7 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="300">
+
 <title>DELUXE | Airthings Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -27,14 +30,16 @@ body {
   align-items: center;
   gap: 20px;
   margin-bottom: 24px;
-  min-height: 125px;
+  min-height: 155px;
 }
 
 .header-title h1 {
   color: #ff003b;
-  font-size: 38px;
-  font-weight: bold;
-  letter-spacing: 2px;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 47.5px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 1.1;
   margin: 0 0 5px;
 }
 
@@ -44,8 +49,8 @@ body {
 }
 
 .facilities-logo {
-  width: 118px;
-  height: 118px;
+  width: 147.5px;
+  height: 147.5px;
   object-fit: contain;
   mix-blend-mode: screen;
   flex-shrink: 0;
@@ -164,12 +169,12 @@ body {
   }
 
   .header-title h1 {
-    font-size: 30px;
+    font-size: 37.5px;
   }
 
   .facilities-logo {
-    width: 90px;
-    height: 90px;
+    width: 112.5px;
+    height: 112.5px;
   }
 }
 </style>
@@ -214,7 +219,7 @@ const icons = {
 
 function number(value, decimals = 0) {
   const n = Number(value);
-  return Number.isFinite(n)
+  return value != null && Number.isFinite(n)
     ? n.toFixed(decimals)
     : "--";
 }
@@ -249,6 +254,15 @@ function metric(label, icon, value, unit, colour = "normal") {
 function deviceType(data) {
   const type = data?.relayDeviceType;
   return type === "hub" ? "View Plus" : "Wave Plus";
+}
+
+function escapeHTML(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 function renderDevice(device) {
@@ -322,15 +336,6 @@ function renderDevice(device) {
       ${lastMetric}
     </section>
   `;
-}
-
-function escapeHTML(value) {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
 }
 
 async function loadAirthings() {
