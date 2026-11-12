@@ -3,6 +3,11 @@ name: Update Airthings Dashboard
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-airthings.yml"
 
 permissions:
   contents: read
@@ -13,4 +18,3 @@ jobs:
     steps:
       - name: Check workflow setup
         run: echo "Airthings workflow is ready"
-
