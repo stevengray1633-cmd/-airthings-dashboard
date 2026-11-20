@@ -11,11 +11,14 @@ CLIENT_SECRET = os.environ["AIRTHINGS_CLIENT_SECRET"]
 TOKEN_URL = "https://accounts-api.airthings.com/v1/token"
 API_URL = "https://ext-api.airthings.com/v1"
 
+
 DEVICES = {
     "2930125849": "Airthings 1 DFX",
     "2960180535": "DH MFRs",
-    "2960194763": "View Plus DFX"
+    "2960194763": "View Plus DFX",
+    "2960206550": "Mastering"
 }
+
 
 def request_json(url, data=None, headers=None):
     request = urllib.request.Request(
