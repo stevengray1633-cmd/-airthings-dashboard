@@ -1,20 +1,20 @@
 {
-  "updated": "2026-11-20T15:54:17.732172+00:00",
+  "updated": "2026-11-20T16:03:50.102994+00:00",
   "devices": {
     "2930125849": {
       "name": "Airthings 1 DFX",
       "readings": {
         "data": {
-          "time": 1795189749,
+          "time": 1795190349,
           "battery": 94,
-          "co2": 605.0,
+          "co2": 608.0,
           "humidity": 35.0,
           "pressure": 1006.0,
           "radonShortTermAvg": 14.0,
           "relayDeviceType": "hub",
-          "rssi": -57,
+          "rssi": -46,
           "temp": 23.5,
-          "voc": 97.0
+          "voc": 116.0
         }
       }
     },
@@ -22,9 +22,9 @@
       "name": "DH MFRs",
       "readings": {
         "data": {
-          "time": 1795189963,
+          "time": 1795190561,
           "battery": 0,
-          "co2": 508.0,
+          "co2": 517.0,
           "humidity": 34.0,
           "pm1": 0.0,
           "pm25": 0.0,
@@ -33,7 +33,7 @@
           "relayDeviceType": "hub",
           "rssi": 0,
           "temp": 23.1,
-          "voc": 88.0
+          "voc": 94.0
         }
       }
     },
@@ -41,9 +41,9 @@
       "name": "View Plus DFX",
       "readings": {
         "data": {
-          "time": 1795189893,
+          "time": 1795190490,
           "battery": 100,
-          "co2": 590.0,
+          "co2": 574.0,
           "humidity": 31.0,
           "pm1": 0.0,
           "pm25": 0.0,
@@ -51,8 +51,8 @@
           "radonShortTermAvg": 8.0,
           "relayDeviceType": "hub",
           "rssi": 0,
-          "temp": 23.8,
-          "voc": 180.0
+          "temp": 23.7,
+          "voc": 170.0
         }
       }
     },
@@ -60,9 +60,9 @@
       "name": "Mastering",
       "readings": {
         "data": {
-          "time": 1795189502,
+          "time": 1795190101,
           "battery": 100,
-          "co2": 669.0,
+          "co2": 551.0,
           "humidity": 34.0,
           "pm1": 0.0,
           "pm25": 0.0,
@@ -70,7 +70,7 @@
           "radonShortTermAvg": 0.0,
           "relayDeviceType": "hub",
           "temp": 23.5,
-          "voc": 64.0
+          "voc": 46.0
         }
       }
     }
