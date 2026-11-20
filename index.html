@@ -47,7 +47,7 @@ header {
     margin-top: 7px;
 }
 
-/* LOGO - INCREASED BY 30% */
+/* LOGO */
 
 .logo {
     width: 176px;
@@ -240,15 +240,26 @@ footer {
 
 const DATA_URL = "airthings-data.json";
 
+/* DEVICE GROUPS */
+
 const deviceGroups = {
     theobalds: [
         "Airthings 1 DFX",
-        "View Plus DFX"
+        "View Plus DFX",
+        "Mastering"
     ],
     perivale: [
         "DH MFRs"
     ]
 };
+
+/* DEVICE TYPES */
+
+const viewPlusDevices = [
+    "View Plus DFX",
+    "DH MFRs",
+    "Mastering"
+];
 
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, c => ({
@@ -261,9 +272,11 @@ function escapeHTML(value) {
 }
 
 function number(value, decimals = 0) {
-    if (value === null ||
+    if (
+        value === null ||
         value === undefined ||
-        value === "") {
+        value === ""
+    ) {
         return "--";
     }
 
@@ -275,8 +288,10 @@ function number(value, decimals = 0) {
 }
 
 function colour(metric, value) {
-    if (value === null ||
-        value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
         return "";
     }
 
@@ -316,9 +331,11 @@ function renderDevice(device) {
     const name = device.name || "Unknown device";
     const readings = device.readings?.data || {};
 
-    const isViewPlus =
-        name.toLowerCase().includes("view plus") ||
-        name.toLowerCase().includes("dh mfr");
+    const isViewPlus = viewPlusDevices.some(
+        deviceName =>
+            deviceName.toLowerCase() ===
+            name.trim().toLowerCase()
+    );
 
     const co2 = readings.co2;
     const voc = readings.voc;
