@@ -1,20 +1,20 @@
 {
-  "updated": "2026-11-21T03:13:38.555244+00:00",
+  "updated": "2026-11-21T04:06:10.185045+00:00",
   "devices": {
     "2930125849": {
       "name": "Airthings 1 DFX",
       "readings": {
         "data": {
-          "time": 1795230550,
+          "time": 1795233850,
           "battery": 94,
-          "co2": 503.0,
+          "co2": 512.0,
           "humidity": 30.0,
           "pressure": 1014.0,
-          "radonShortTermAvg": 18.0,
+          "radonShortTermAvg": 20.0,
           "relayDeviceType": "hub",
-          "rssi": -39,
+          "rssi": -38,
           "temp": 23.1,
-          "voc": 89.0
+          "voc": 95.0
         }
       }
     },
@@ -22,18 +22,18 @@
       "name": "DH MFRs",
       "readings": {
         "data": {
-          "time": 1795230607,
+          "time": 1795233761,
           "battery": 0,
-          "co2": 548.0,
-          "humidity": 28.0,
-          "pm1": 4.0,
-          "pm25": 4.0,
+          "co2": 523.0,
+          "humidity": 27.0,
+          "pm1": 0.0,
+          "pm25": 0.0,
           "pressure": 1016.0,
-          "radonShortTermAvg": 11.0,
+          "radonShortTermAvg": 12.0,
           "relayDeviceType": "hub",
           "rssi": 0,
-          "temp": 24.0,
-          "voc": 232.0
+          "temp": 24.2,
+          "voc": 223.0
         }
       }
     },
@@ -41,18 +41,18 @@
       "name": "View Plus DFX",
       "readings": {
         "data": {
-          "time": 1795230693,
+          "time": 1795233838,
           "battery": 100,
-          "co2": 495.0,
+          "co2": 491.0,
           "humidity": 27.0,
-          "pm1": 2.0,
-          "pm25": 2.0,
+          "pm1": 4.0,
+          "pm25": 4.0,
           "pressure": 1015.0,
           "radonShortTermAvg": 10.0,
           "relayDeviceType": "hub",
           "rssi": 0,
           "temp": 22.9,
-          "voc": 136.0
+          "voc": 132.0
         }
       }
     },
