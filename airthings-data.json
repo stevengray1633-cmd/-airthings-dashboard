@@ -1,20 +1,20 @@
 {
-  "updated": "2026-11-24T14:02:06.102755+00:00",
+  "updated": "2026-11-24T15:11:14.775379+00:00",
   "devices": {
     "2930125849": {
       "name": "Airthings 1 DFX",
       "readings": {
         "data": {
-          "time": 1795528753,
+          "time": 1795532053,
           "battery": 94,
-          "co2": 549.0,
-          "humidity": 31.0,
-          "pressure": 1013.0,
+          "co2": 620.0,
+          "humidity": 32.0,
+          "pressure": 1012.0,
           "radonShortTermAvg": 14.0,
           "relayDeviceType": "hub",
-          "rssi": -52,
-          "temp": 23.1,
-          "voc": 198.0
+          "rssi": -43,
+          "temp": 23.3,
+          "voc": 246.0
         }
       }
     },
@@ -22,18 +22,18 @@
       "name": "DH MFRs",
       "readings": {
         "data": {
-          "time": 1795528810,
+          "time": 1795532110,
           "battery": 0,
-          "co2": 506.0,
-          "humidity": 30.0,
-          "pm1": 0.0,
-          "pm25": 0.0,
+          "co2": 514.0,
+          "humidity": 31.0,
+          "pm1": 2.0,
+          "pm25": 2.0,
           "pressure": 1014.0,
           "radonShortTermAvg": 11.0,
           "relayDeviceType": "hub",
           "rssi": 0,
-          "temp": 22.1,
-          "voc": 109.0
+          "temp": 22.2,
+          "voc": 116.0
         }
       }
     },
@@ -41,18 +41,18 @@
       "name": "View Plus DFX",
       "readings": {
         "data": {
-          "time": 1795528741,
+          "time": 1795532194,
           "battery": 100,
-          "co2": 541.0,
-          "humidity": 29.0,
-          "pm1": 2.0,
-          "pm25": 2.0,
-          "pressure": 1014.0,
+          "co2": 577.0,
+          "humidity": 30.0,
+          "pm1": 3.0,
+          "pm25": 3.0,
+          "pressure": 1013.0,
           "radonShortTermAvg": 3.0,
           "relayDeviceType": "hub",
           "rssi": 0,
           "temp": 23.2,
-          "voc": 276.0
+          "voc": 433.0
         }
       }
     },
@@ -60,18 +60,18 @@
       "name": "Mastering",
       "readings": {
         "data": {
-          "time": 1795528876,
+          "time": 1795532776,
           "battery": 0,
-          "co2": 710.0,
-          "humidity": 32.0,
-          "pm1": 2.0,
-          "pm25": 2.0,
-          "pressure": 1014.0,
+          "co2": 716.0,
+          "humidity": 33.0,
+          "pm1": 0.0,
+          "pm25": 1.0,
+          "pressure": 1013.0,
           "radonShortTermAvg": 3.0,
           "relayDeviceType": "hub",
           "rssi": 0,
           "temp": 22.8,
-          "voc": 58.0
+          "voc": 55.0
         }
       }
     }
