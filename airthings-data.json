@@ -1,20 +1,20 @@
 {
-  "updated": "2026-11-24T23:18:16.322259+00:00",
+  "updated": "2026-11-25T00:11:14.191750+00:00",
   "devices": {
     "2930125849": {
       "name": "Airthings 1 DFX",
       "readings": {
         "data": {
-          "time": 1795561754,
+          "time": 1795565353,
           "battery": 94,
-          "co2": 464.0,
+          "co2": 458.0,
           "humidity": 28.0,
           "pressure": 1011.0,
           "radonShortTermAvg": 18.0,
           "relayDeviceType": "hub",
-          "rssi": -50,
-          "temp": 22.9,
-          "voc": 84.0
+          "rssi": -52,
+          "temp": 22.8,
+          "voc": 95.0
         }
       }
     },
@@ -22,18 +22,18 @@
       "name": "DH MFRs",
       "readings": {
         "data": {
-          "time": 1795562111,
+          "time": 1795565264,
           "battery": 0,
-          "co2": 458.0,
+          "co2": 443.0,
           "humidity": 28.0,
           "pm1": 1.0,
           "pm25": 1.0,
-          "pressure": 1013.0,
-          "radonShortTermAvg": 18.0,
+          "pressure": 1012.0,
+          "radonShortTermAvg": 16.0,
           "relayDeviceType": "hub",
           "rssi": 0,
-          "temp": 21.9,
-          "voc": 114.0
+          "temp": 21.8,
+          "voc": 102.0
         }
       }
     },
@@ -41,9 +41,9 @@
       "name": "View Plus DFX",
       "readings": {
         "data": {
-          "time": 1795561897,
+          "time": 1795565341,
           "battery": 100,
-          "co2": 462.0,
+          "co2": 460.0,
           "humidity": 25.0,
           "pm1": 1.0,
           "pm25": 1.0,
@@ -52,7 +52,7 @@
           "relayDeviceType": "hub",
           "rssi": 0,
           "temp": 22.6,
-          "voc": 124.0
+          "voc": 125.0
         }
       }
     },
@@ -60,18 +60,18 @@
       "name": "Mastering",
       "readings": {
         "data": {
-          "time": 1795561876,
+          "time": 1795565328,
           "battery": 0,
-          "co2": 464.0,
+          "co2": 448.0,
           "humidity": 27.0,
-          "pm1": 0.0,
-          "pm25": 0.0,
+          "pm1": 2.0,
+          "pm25": 2.0,
           "pressure": 1012.0,
-          "radonShortTermAvg": 2.0,
+          "radonShortTermAvg": 3.0,
           "relayDeviceType": "hub",
           "rssi": 0,
-          "temp": 22.7,
-          "voc": 85.0
+          "temp": 22.5,
+          "voc": 50.0
         }
       }
     }
