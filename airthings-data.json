@@ -1,20 +1,20 @@
 {
-  "updated": "2026-11-27T05:32:19.391706+00:00",
+  "updated": "2026-11-27T06:40:35.031528+00:00",
   "devices": {
     "2930125849": {
       "name": "Airthings 1 DFX",
       "readings": {
         "data": {
-          "time": 1795757356,
+          "time": 1795761255,
           "battery": 94,
-          "co2": 454.0,
-          "humidity": 24.0,
+          "co2": 453.0,
+          "humidity": 25.0,
           "pressure": 1015.0,
           "radonShortTermAvg": 8.0,
           "relayDeviceType": "hub",
-          "rssi": -46,
-          "temp": 23.0,
-          "voc": 101.0
+          "rssi": -47,
+          "temp": 22.9,
+          "voc": 84.0
         }
       }
     },
@@ -22,18 +22,18 @@
       "name": "DH MFRs",
       "readings": {
         "data": {
-          "time": 1795757412,
+          "time": 1795761465,
           "battery": 0,
-          "co2": 425.0,
-          "humidity": 25.0,
-          "pm1": 5.0,
-          "pm25": 5.0,
+          "co2": 436.0,
+          "humidity": 26.0,
+          "pm1": 6.0,
+          "pm25": 6.0,
           "pressure": 1017.0,
           "radonShortTermAvg": 13.0,
           "relayDeviceType": "hub",
           "rssi": 0,
-          "temp": 21.4,
-          "voc": 135.0
+          "temp": 21.3,
+          "voc": 127.0
         }
       }
     },
@@ -41,18 +41,18 @@
       "name": "View Plus DFX",
       "readings": {
         "data": {
-          "time": 1795757344,
+          "time": 1795761396,
           "battery": 100,
-          "co2": 433.0,
+          "co2": 460.0,
           "humidity": 22.0,
-          "pm1": 7.0,
-          "pm25": 7.0,
+          "pm1": 5.0,
+          "pm25": 5.0,
           "pressure": 1016.0,
-          "radonShortTermAvg": 5.0,
+          "radonShortTermAvg": 7.0,
           "relayDeviceType": "hub",
           "rssi": 0,
           "temp": 22.6,
-          "voc": 130.0
+          "voc": 123.0
         }
       }
     },
@@ -60,18 +60,18 @@
       "name": "Mastering",
       "readings": {
         "data": {
-          "time": 1795757031,
+          "time": 1795761529,
           "battery": 0,
-          "co2": 463.0,
-          "humidity": 24.0,
-          "pm1": 3.0,
-          "pm25": 3.0,
-          "pressure": 1016.0,
+          "co2": 441.0,
+          "humidity": 25.0,
+          "pm1": 6.0,
+          "pm25": 6.0,
+          "pressure": 1017.0,
           "radonShortTermAvg": 2.0,
           "relayDeviceType": "hub",
           "rssi": 0,
-          "temp": 21.7,
-          "voc": 112.0
+          "temp": 21.6,
+          "voc": 90.0
         }
       }
     }
