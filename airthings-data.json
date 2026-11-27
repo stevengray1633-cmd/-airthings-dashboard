@@ -1,20 +1,20 @@
 {
-  "updated": "2026-11-27T18:44:29.084741+00:00",
+  "updated": "2026-11-27T19:44:26.000809+00:00",
   "devices": {
     "2930125849": {
       "name": "Airthings 1 DFX",
       "readings": {
         "data": {
-          "time": 1795804756,
+          "time": 1795808356,
           "battery": 94,
-          "co2": 504.0,
+          "co2": 457.0,
           "humidity": 28.0,
-          "pressure": 1018.0,
+          "pressure": 1019.0,
           "radonShortTermAvg": 16.0,
           "relayDeviceType": "hub",
-          "rssi": -48,
-          "temp": 23.3,
-          "voc": 153.0
+          "rssi": -47,
+          "temp": 23.2,
+          "voc": 136.0
         }
       }
     },
@@ -22,18 +22,18 @@
       "name": "DH MFRs",
       "readings": {
         "data": {
-          "time": 1795804964,
+          "time": 1795808565,
           "battery": 0,
-          "co2": 423.0,
+          "co2": 432.0,
           "humidity": 28.0,
-          "pm1": 3.0,
-          "pm25": 3.0,
+          "pm1": 2.0,
+          "pm25": 2.0,
           "pressure": 1020.0,
           "radonShortTermAvg": 21.0,
           "relayDeviceType": "hub",
           "rssi": 0,
-          "temp": 21.4,
-          "voc": 112.0
+          "temp": 21.3,
+          "voc": 99.0
         }
       }
     },
@@ -41,18 +41,18 @@
       "name": "View Plus DFX",
       "readings": {
         "data": {
-          "time": 1795804897,
+          "time": 1795808497,
           "battery": 100,
-          "co2": 495.0,
-          "humidity": 25.0,
-          "pm1": 5.0,
-          "pm25": 5.0,
-          "pressure": 1019.0,
-          "radonShortTermAvg": 7.0,
+          "co2": 443.0,
+          "humidity": 26.0,
+          "pm1": 6.0,
+          "pm25": 6.0,
+          "pressure": 1020.0,
+          "radonShortTermAvg": 8.0,
           "relayDeviceType": "hub",
           "rssi": 0,
-          "temp": 23.1,
-          "voc": 232.0
+          "temp": 22.9,
+          "voc": 165.0
         }
       }
     },
@@ -60,18 +60,18 @@
       "name": "Mastering",
       "readings": {
         "data": {
-          "time": 1795805032,
+          "time": 1795808632,
           "battery": 0,
-          "co2": 788.0,
+          "co2": 735.0,
           "humidity": 30.0,
-          "pm1": 3.0,
-          "pm25": 3.0,
-          "pressure": 1019.0,
+          "pm1": 6.0,
+          "pm25": 6.0,
+          "pressure": 1020.0,
           "radonShortTermAvg": 5.0,
           "relayDeviceType": "hub",
           "rssi": 0,
           "temp": 22.7,
-          "voc": 260.0
+          "voc": 158.0
         }
       }
     }
